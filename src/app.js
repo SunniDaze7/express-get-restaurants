@@ -1,15 +1,12 @@
 const express = require("express");
 const app = express();
+const restaurantRouter = require('../routes/restaurantRoutes')
+
 const Restaurant = require("../models/index")
 const db = require("../db/connection");
 
-//TODO: Create your GET Request Route Below: 
-app.get('/restaurants/:id', async (req, res)=>{
-    let id = req.params.id
-    const restaurant = await Restaurant.findByPk(id)
-    res.json(restaurant)
-})
-
+app.use(express.json())
+app.use('/restaurants', restaurantRouter)
 
 
 module.exports = app;
